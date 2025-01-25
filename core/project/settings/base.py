@@ -29,6 +29,8 @@ INSTALLED_APPS = [
     'corsheaders',
     # app
     'core.user.apps.UserConfig',
+    'core.fuel.apps.FuelConfig',
+    'core.api.apps.ApiConfig',
 
     # third party apps by position
     'django_filters',
