@@ -13,6 +13,7 @@ INSTALLED_APPS = [
     'unfold.contrib.filters',
     'unfold.contrib.forms',
     'unfold.contrib.simple_history',
+    'unfold.contrib.import_export',
 
     # core apps
     'django.contrib.admin',
@@ -26,6 +27,7 @@ INSTALLED_APPS = [
     # third party apps
     'defender',
     'import_export',
+    'maintenance_mode',
     'corsheaders',
     # app
     'core.user.apps.UserConfig',
