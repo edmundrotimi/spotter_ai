@@ -2,7 +2,20 @@
     word-wrap: break-word;
 }
 
-
 fieldset.module.wide, fieldset.module {
     display: block !important;
+}
+
+fieldset select:not([class*=bg-none]):not([multiple]) {
+    background-color: rgb(var(--color-base-900) / var(--tw-bg-opacity));
+    opacity: 0.9;
+    border: 1px solid wheat;
+    height: 45px;
+    padding: 10px;
+    border-radius: 10px;
+}
+
+fieldset elect:not([class*=bg-none]):not([multiple]) option {
+    background-color: #111827;
+    opacity: 0.9;
 }
