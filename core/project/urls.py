@@ -1,6 +1,7 @@
 from django.conf.urls.static import static
 from django.contrib import admin
 from django.urls import include, path
+from django.views.generic import RedirectView
 from rest_framework_simplejwt.views import TokenObtainPairView, TokenRefreshView
 
 from core.project.settings import ADMIN_PATH, DEBUG  # type: ignore # noqa: I101
@@ -14,6 +15,7 @@ urlpatterns = [
     # path('api/v1/', include('core.api.urls')),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
+    path('favicon.ico', RedirectView.as_view(url='/static/assets/favicon/favicon.ico')),
 ]
 
 # Add paths in debug mode
