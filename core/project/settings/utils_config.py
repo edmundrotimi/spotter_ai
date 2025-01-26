@@ -1,8 +1,34 @@
+import jinja2
 import sentry_sdk
 
 from core.project.settings import BASE_DIR, ENV, MAINTENANCE_MODE, PROJECT_DIR  # type: ignore
 
 TEMPLATES = [
+    {
+        # Jinja2 template setup
+        'BACKEND': 'django.template.backends.jinja2.Jinja2',
+        'DIRS': [f'{BASE_DIR}/core/jinja2'],
+        'APP_DIRS': True,
+        'OPTIONS': {
+            'autoescape':
+                False,
+            'undefined':
+                jinja2.StrictUndefined,
+            'environment':
+                'core.project.settings.jinja.env.JinjaEnvironment',
+            'extensions': [
+                'jinja2.ext.loopcontrols',
+                'jinja2.ext.do',
+                'core.project.settings.jinja.extensions.DjangoNow',
+            ],
+            'context_processors': [
+                'django.template.context_processors.debug',
+                'django.template.context_processors.request',
+                'django.contrib.auth.context_processors.auth',
+                'django.contrib.messages.context_processors.messages',
+            ],
+        },
+    },
     {
         'BACKEND': 'django.template.backends.django.DjangoTemplates',
         'DIRS': [f'{BASE_DIR}/core/templates'],
@@ -14,6 +40,9 @@ TEMPLATES = [
                 'django.contrib.auth.context_processors.auth',
                 'django.contrib.messages.context_processors.messages',
             ],
+            'libraries': {
+                'custom_filters': 'core.project.settings.django.filters',
+            },
         },
     },
 ]
