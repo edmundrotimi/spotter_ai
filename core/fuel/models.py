@@ -1,6 +1,6 @@
+from autoslug import AutoSlugField
 from django.db import models
 from django.utils import timezone
-from autoslug import AutoSlugField
 from shortuuid.django_fields import ShortUUIDField
 from simple_history.models import HistoricalRecords
 
