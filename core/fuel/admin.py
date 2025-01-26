@@ -1,10 +1,23 @@
 from django.contrib import admin
+from import_export import resources
+from import_export.admin import ImportExportModelAdmin
 from unfold.admin import ModelAdmin
 
 from .models import FuelPrices
 
 
-class FuelPriceAdmin(ModelAdmin):
+class FuelResource(resources.ModelResource):
+
+    class Meta:
+        model = FuelPrices
+        skip_unchanged = True
+        report_skipped = True
+        exclude = ['id', 'last_update', 'history', 'slug']
+
+
+@admin.register(FuelPrices)
+class FuelPriceAdmin(ModelAdmin, ImportExportModelAdmin):
+    resource_class = FuelResource
     list_display = ['opis_id', 'truckstop_name', 'city', 'state', 'rack_id', 'retail_price']
     list_display_links = ['opis_id', 'truckstop_name', 'city', 'state', 'rack_id', 'retail_price']
     search_fields = ['opis_id', 'truckstop_name', 'city', 'state', 'rack_id', 'retail_price']
@@ -45,7 +58,3 @@ class FuelPriceAdmin(ModelAdmin):
             },
         ],
     ]
-
-
-# register admin settings
-admin.site.register(FuelPrices, FuelPriceAdmin)
