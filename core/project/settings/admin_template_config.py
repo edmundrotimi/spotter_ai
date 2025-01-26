@@ -8,13 +8,13 @@ path = ENV.config('ADMIN_PATH')
 
 
 UNFOLD = {
-    'SITE_TITLE': 'Spotter Project',
-    'SITE_HEADER': 'Spotter Project',
+    'SITE_TITLE': 'Spotter AI',
+    'SITE_HEADER': 'Spotter AI',
     'SITE_URL': '/',
     # 'SITE_ICON': lambda request: static('assets/img/favicon.png'),  # both modes, optimize for 32px height
     'SITE_ICON': {
-        'light': lambda request: static('assets/img/favicon.png'),  # light mode
-        'dark': lambda request: static('assets/img/favicon.png'),  # dark mode
+        'light': lambda request: static('assets/favicon/favicon.ico'),  # light mode
+        'dark': lambda request: static('assets/favicon/favicon.ico'),  # dark mode
     },
     # 'SITE_LOGO': lambda request: static('logo.svg'),  # both modes, optimize for 32px height
     'SITE_LOGO': {
@@ -33,9 +33,9 @@ UNFOLD = {
     'STYLES': [
         lambda request: static('assets/css/unfold/style.css'),
     ],
-    'SCRIPTS': [
-        lambda request: static('assets/js/unfold/script.js'),
-    ],
+    # 'SCRIPTS': [
+    #     lambda request: static('assets/js/unfold/script.js'),
+    # ],
     'COLORS': {
         'primary': {
             '50': '250 245 255',
@@ -65,6 +65,11 @@ UNFOLD = {
                         'icon': 'dashboard',  # Supported icon set: https://fonts.google.com/icons
                         'link': lambda request: f'/{path}/',  # noqa: E501
                     },
+                    {
+                        'title': _('Fuel Prices'),
+                        'icon': 'local_gas_station',
+                        'link': lambda request: f'/{path}/fuel/fuelprices/',  # noqa: E501
+                    },
                 ],
             },
             {
@@ -85,7 +90,7 @@ UNFOLD = {
                     {
                         'title': _('Users'),
                         'icon': 'badge',
-                        'link': lambda request: f'/{path}/users/user/',  # noqa: E501
+                        'link': lambda request: f'/{path}/user/users/',  # noqa: E501
                     },
                     {
                         'title': _('Groups'),
