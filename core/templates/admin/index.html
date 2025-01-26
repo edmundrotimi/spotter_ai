@@ -1,0 +1,126 @@
+{% extends 'unfold/layouts/base_simple.html' %}
+{% load cache humanize i18n %}
+{% load custom_filters %}
+
+
+{% block breadcrumbs %}{% endblock %}
+
+{% block title %}
+    {% if subtitle %}
+        {{ subtitle }} |
+    {% endif %}
+
+    {{ title }} | {{ site_title|default:_('Django site admin') }}
+{% endblock %}
+
+{% block branding %}
+    <h1 id="site-name">
+        <a href="{% url 'admin:index' %}">
+            {{ site_header|default:_('Django administration') }}
+        </a>
+    </h1>
+{% endblock %}
+
+{% block content %}
+
+
+    <div>
+        {% include "unfold/helpers/messages.html" %}
+    </div>
+
+    <div id="content" class="container mx-auto colM">
+        <div class="mx-auto">
+            <div class="flex  flex-row gap-4">
+                <nav class="bg-gray-100 flex gap-2 mb-8 p-1 rounded text-sm dark:bg-white/[.04]">
+                    <a href="/{{admin_path}}" class="flex flex-row font-medium items-center px-2.5 py-1 rounded shadow-sm text-gray-700 hover:bg-grey-900 dark:bg-gray-900 dark:hover:bg-gray-900 dark:text-white">
+                        Dashboard
+                    </a>
+                    <a href="/{{admin_path}}/fuel/fuelprices/" class="flex flex-row font-medium items-center px-2.5 py-1 rounded  text-gray-400 hover:bg-gray-700/[.04] hover:text-gray-700 dark:hover:bg-white/[.04] dark:hover:text-white">
+                        Fuel Prices
+                    </a>
+                </nav>
+                <nav class="bg-gray-100 flex gap-2 mb-8 p-1 rounded text-sm dark:bg-white/[.04] ml-auto">
+                    <a href="/{{admin_path}}/user/users/" class="flex flex-row font-medium items-center px-2.5 py-1 rounded shadow-sm text-gray-700 hover:bg-grey-900 dark:bg-gray-900 dark:hover:bg-gray-900 dark:text-white">
+                        Users
+                    </a>
+                    <a href="/{{admin_path}}/defender/accessattempt/" class="flex flex-row font-medium items-center px-2.5 py-1 rounded  text-gray-400 hover:bg-gray-700/[.04] hover:text-gray-700 dark:hover:bg-white/[.04] dark:hover:text-white">
+                        Security
+                    </a>
+                </nav>
+            </div>
+
+            <div class="flex  flex-row gap-8 mb-8 flex-col lg:flex-row">
+                <div class="border flex flex-col flex-grow p-6 rounded-md shadow-sm dark:border-gray-800 lg:w-1/3">
+                    <div class="flex-grow relative">
+                        <p class="leading-relaxed mb-0 text-sm">
+                            Highest Fuel Price
+                        </p>
+                        <div class="font-medium text-2xl text-gray-700 dark:text-gray-200">
+                            {{fuel_prices.max_price|intcomma}}
+                        </div>
+                        <div class="absolute right-0 top-0">
+                            <span class="inline-block font-semibold leading-normal px-2 py-1 rounded text-xxs uppercase whitespace-nowrap
+                                bg-primary-100 text-primary-500 dark:bg-primary-500/20
+                                ">
+                                Last 24Hrs
+                            </span>
+                        </div>
+                    </div>
+                    <div class="border-t flex items-center -mb-6 -mx-6 mt-6 pb-2 pt-2 px-6 text-sm dark:border-gray-800">
+                        <strong class="text-green-600 font-medium">{{ fuel_prices|length|intcomma}}</strong>&nbsp; Total Vehicles
+                    </div>
+                </div>
+                <div class="border flex flex-col flex-grow p-6 rounded-md shadow-sm dark:border-gray-800 lg:w-1/3">
+                    <div class="flex-grow relative">
+                        <p class="leading-relaxed mb-0 text-sm">
+                            Lowest Fuel Price 
+                        </p>
+                        <div class="font-medium text-2xl text-gray-700 dark:text-gray-200">
+                            {{fuel_prices.max_price|intcomma}}
+                        </div>
+                        <div class="absolute right-0 top-0">
+                            <span class="inline-block font-semibold leading-normal px-2 py-1 rounded text-xxs uppercase whitespace-nowrap
+                                bg-primary-100 text-primary-500 dark:bg-primary-500/20
+                                ">
+                                Last 24Hrs
+                            </span>
+                        </div>
+                    </div>
+                    <div class="border-t flex items-center -mb-6 -mx-6 mt-6 pb-2 pt-2 px-6 text-sm dark:border-gray-800">
+                        <strong class="text-green-600 font-medium">{{ fuel_prices|length|intcomma}}</strong>&nbsp; Total Vehicles
+                    </div>
+                </div>
+                <div class="border flex flex-col flex-grow p-6 rounded-md shadow-sm dark:border-gray-800 lg:w-1/3">
+                    <div class="flex-grow relative">
+                        <p class="leading-relaxed mb-0 text-sm">
+                            Last 24Hrs
+                        </p>
+                        <div class="font-medium text-2xl text-gray-700 dark:text-gray-200">
+                            {{fuel_prices.total_price|intcomma}}
+                        </div>
+                        <div class="absolute right-0 top-0">
+                            <span class="inline-block font-semibold leading-normal px-2 py-1 rounded text-xxs uppercase whitespace-nowrap
+                                bg-primary-100 text-primary-500 dark:bg-primary-500/20
+                                ">
+                                Last 24Hrs
+                            </span>
+                        </div>
+                    </div>
+                    <div class="border-t flex items-center -mb-6 -mx-6 mt-6 pb-2 pt-2 px-6 text-sm dark:border-gray-800">
+                        <strong class="text-green-600 font-medium">{{ fuel_prices|length|intcomma}}</strong>&nbsp; Total Vehicles
+                    </div>
+                </div>
+            </div>
+            <div class="border flex flex-col flex-grow p-6 rounded-md shadow-sm dark:border-gray-800 mb-8">
+                <h2 class="border-b font-medium mb-6 -mt-2 -mx-6 pb-4 px-6 text-sm text-gray-700 dark:text-gray-200 dark:border-gray-800">
+                    Recent Fuel Prices
+                </h2>
+                <div class="flex-grow relative">
+                    <div class="relative w-full">
+                        <canvas class="chart"  data-type="line" data-value="{&quot;labels&quot;: [&quot;12am&quot;, &quot;1am&quot;, &quot;2am&quot;, &quot;3am&quot;, &quot;4am&quot;, &quot;5am&quot;, &quot;6am&quot;, &quot;7am&quot;, &quot;8am&quot;, &quot;9am&quot;, &quot;10am&quot;, &quot;11am&quot;, &quot;12pm&quot;, &quot;1pm&quot;, &quot;2pm&quot;, &quot;3pm&quot;, &quot;4pm&quot;, &quot;5pm&quot;, &quot;6pm&quot;, &quot;7pm&quot;, &quot;8pm&quot;, &quot;9pm&quot;, &quot;10pm&quot;, &quot;11pm&quot;], &quot;datasets&quot;: [{&quot;data&quot;:{{'prices'|prices_chart_data}}, &quot;borderColor&quot;: &quot;#9333ea&quot;}]}"  ></canvas>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+{% endblock %}
