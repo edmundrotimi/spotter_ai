@@ -62,7 +62,7 @@ class CalculateRouteAPITest(TestCase):
 
     def test_calculate_route_missing_fields(self):
         # POST request with missing finish input field
-        invalid_payload = {"start": {"lat": 40.7128, "lng": -74.0060}}
+        invalid_payload = {"start": "40.7128,-74.0060"}
         response = self.client.post(self.url, data=json.dumps(invalid_payload), content_type="application/json")
 
         # assert response
