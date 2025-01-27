@@ -23,6 +23,10 @@ ADMIN_PATH = ENV.config('ADMIN_PATH')
 # Debug state
 DEBUG = ENV.config('DEBUG', cast=bool)
 
+# API keys
+OPENROUTESERVICE_API_KEY = ENV.config('OPENROUTESERVICE_API_KEY')
+MAPQUEST_API_KEY = ENV.config('MAPQUEST_API_KEY')
+
 # Maintenance mood
 MAINTENANCE_MODE = ENV.config('MAINTENANCE_MODE', cast=bool)
 

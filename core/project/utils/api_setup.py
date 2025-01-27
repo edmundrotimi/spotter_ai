@@ -4,9 +4,9 @@ from rest_framework import permissions
 
 schema_view = get_schema_view(
     openapi.Info(
-        title='Django Remote',
+        title='Spotter AI Remote',
         default_version='v1',
-        description='Remote job application',
+        description='Spotter AI',
         terms_of_service='http://127.0.0.1:8000',
         contact=openapi.Contact(
             name='Edmund Rotimi', url='https://github.com/edmundrotimi/', email='edmundrotimi@gmail.com'
