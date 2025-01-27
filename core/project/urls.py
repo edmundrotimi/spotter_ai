@@ -12,7 +12,7 @@ from .utils.api_setup import schema_view
 urlpatterns = [
     path(f'{ADMIN_PATH}/', admin.site.urls),
     path('api/v1/swagger/', schema_view.with_ui('swagger', cache_timeout=0), name='schema-swagger-ui'),
-    # path('api/v1/', include('core.api.urls')),
+    path('api/v1/', include('core.api.urls')),
     path('token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
     path('token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
     path('favicon.ico', RedirectView.as_view(url='/static/assets/favicon/favicon.ico')),
