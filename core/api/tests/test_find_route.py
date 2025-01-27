@@ -45,7 +45,7 @@ class CalculateRouteAPITest(TestCase):
 
         # assert response
         response_data = response.json()
-        self.assertIn('route', response_data)
+        self.assertIn('valid_route_points', response_data)
         self.assertIn('optimal_stations', response_data)
         self.assertIn('total_cost', response_data)
         self.assertIn('map_link', response_data)
