@@ -10,7 +10,7 @@ class RouteAPITests(TestCase):
     @tag('integration')
     def test_real_route(self):
         # An integration test with a real API call
-        start = {"lat": 40.7128, "lng": -74.0060}
-        finish = {"lat": 34.0522, "lng": -118.2437}
+        start = [40.7128, -74.0060]
+        finish = [34.0522, -118.2437]
         response = get_route(start, finish)
         self.assertIn('features', response)
